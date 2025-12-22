@@ -1,44 +1,63 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
 {
-    PlayerSkill _skill;
+    Gum _target;
+    Gum _preTarget;
+    bool _isPause;
+    bool _isGameOver;
 
-    public void Init(PlayerSkill skill)
+    public void Init()
     {
-        _skill = skill;
+        GameFlowManager.Instance.RegisterList<IPause>(this);
+        GameFlowManager.Instance.RegisterList<IResume>(this);
+        GameFlowManager.Instance.RegisterList<IGameOver>(this);
+        _isPause = false;
+        _isGameOver = false;
+    }
+
+    public void Pause()
+    {
+        _isPause = true;
+    }
+
+    public void Resume()
+    {
+        _isPause = false;
+    }
+
+    public void GameOver()
+    {
+        _isGameOver = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out var hit))
+        if (!_isGameOver)
         {
-            if (hit.collider.gameObject.tag == "Gum")
+            if (!_isPause)
             {
-                if (Input.GetMouseButtonDown(0))
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out var hit))
                 {
-                    var gum = hit.collider.gameObject.GetComponent<Gum>();
-                    if (_skill.PurchaseGum(gum.GumDefault.GumValue))
+                    _preTarget = _target;
+                    _target = hit.collider.gameObject.GetComponent<Gum>();
+                    if (_preTarget != _target)
                     {
-                        if (gum.OpenLotto() == GumDefault.Lotto.Hit)
-                        {
-                            _skill.GetHitGum();
-                        }
-                        else
-                        {
-                            _skill.GetMissGum();
-                        }
-                        PlayerActionManager.Instance.StatusUpdate();
-                        Debug.Log("Purchase Success");
+                        PlayerActionManager.Instance.SearchGum(preTarget: _preTarget);
                     }
-                    else
+                    if (_target && _target.tag == "Gum")
                     {
-                        Debug.Log("Purchase Failed");
+                        if (_target != _preTarget)
+                        {
+                            PlayerActionManager.Instance.SearchGum(_target);
+                        }
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            PlayerActionManager.Instance.PurchaseGum(_target);
+                        }
                     }
-                    Debug.Log($"Money => {_skill.CurrentMoney}");
-                    Debug.Log($"HitCount => {_skill.HitCount}");
                 }
             }
         }

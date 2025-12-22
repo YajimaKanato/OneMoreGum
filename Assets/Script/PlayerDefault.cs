@@ -19,9 +19,11 @@ public class PlayerSkill
     int _currentMoney;
     int _hitCount;
     int _missCount;
+    bool _isPurchasable;
     public int CurrentMoney => _currentMoney;
     public int HitCount => _hitCount;
     public int MissCount => _missCount;
+    public bool IsPurchasable => _isPurchasable;
 
     public PlayerSkill(PlayerDefault data)
     {
@@ -29,11 +31,12 @@ public class PlayerSkill
         _currentMoney = _player.DefaultMoney;
         _hitCount = _player.DefaultHitCount;
         _missCount = _player.DefaultMissCount;
+        _isPurchasable = true;
     }
 
     public bool PurchaseGum(int money)
     {
-        if (_currentMoney < money && _hitCount <= 0) return false;
+        if (!_isPurchasable) return false;
         if (_currentMoney >= money)
         {
             _currentMoney -= money;
@@ -42,6 +45,7 @@ public class PlayerSkill
         {
             _hitCount--;
         }
+        _isPurchasable = _currentMoney >= money || _hitCount > 0;
         return true;
     }
 

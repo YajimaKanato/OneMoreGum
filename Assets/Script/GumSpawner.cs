@@ -75,7 +75,7 @@ public class GumSpawner : MonoBehaviour
                     gum = Instantiate(_missGum, pos, Quaternion.Euler(rot));
                 }
             }
-            gum.SpawnerSetting(this, id);
+            gum.SpawnSetting(this, id);
             _gums[id] = gum;
             _spawnCount++;
         }

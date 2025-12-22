@@ -10,17 +10,12 @@ public class Gum : MonoBehaviour
 
     public GumDefault GumDefault => _gumDefault;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void SpawnSetting(GumSpawner spawner, int id)
     {
         if (tag != "Gum")
         {
             tag = "Gum";
         }
-    }
-
-    public void SpawnerSetting(GumSpawner spawner, int id)
-    {
         _spawner = spawner;
         _id = id;
     }
@@ -30,5 +25,15 @@ public class Gum : MonoBehaviour
         _spawner.ReleaseToPool(this, _id);
         Debug.Log(_gumDefault.LottoType.ToString());
         return _gumDefault.LottoType;
+    }
+
+    public void Observing()
+    {
+
+    }
+
+    public void EscapedObserving()
+    {
+
     }
 }
