@@ -3,12 +3,19 @@ using UnityEngine;
 
 public class SearchUI : MonoBehaviour
 {
+    [SerializeField] GumInfo _gumInfo;
     [SerializeField] LineRenderer _line;
     [SerializeField] float _crossLineRange = 1;
     [SerializeField] float _horizontalLineRange = 0.5f;
     [SerializeField] int _separateCount = 100;
     [SerializeField] Vector3 _lineHeight = Vector3.up * 7;
     Coroutine _coroutine;
+
+    private void Start()
+    {
+        _line.positionCount = 0;
+        _gumInfo.gameObject.SetActive(false);
+    }
 
     public void DrawLine(Vector3 pos, Vector3 boxPos)
     {
@@ -25,6 +32,7 @@ public class SearchUI : MonoBehaviour
             StopCoroutine(_coroutine);
             _coroutine = null;
             _line.positionCount = 0;
+            _gumInfo.gameObject.SetActive(false);
         }
     }
 
@@ -59,5 +67,8 @@ public class SearchUI : MonoBehaviour
             _line.SetPosition(positionIndex, currentPos);
             yield return wait;
         }
+        _gumInfo.gameObject.SetActive(true);
+        //_gumInfo.InfoUpdate();
+        _gumInfo.transform.position = Camera.main.WorldToScreenPoint(currentPos);
     }
 }
