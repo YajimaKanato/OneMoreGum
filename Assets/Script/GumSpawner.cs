@@ -7,7 +7,7 @@ public class GumSpawner : MonoBehaviour
     [SerializeField] Gum _missGum;
     [SerializeField] float _radius = 1;
     [SerializeField] int _maxSpawnCount = 10;
-    [SerializeField, Range(0.1f, 1)] float _hitGumSpawnRate;
+    [SerializeField, Range(1, 10)] int _hitGumSpawnRate;
     /// <summary>現在スポーン中のオブジェクトの配列</summary>
     Gum[] _gums;
     /// <summary>スポーンするオブジェクトに付与する番号のキュー</summary>
@@ -19,6 +19,8 @@ public class GumSpawner : MonoBehaviour
     int _spawnCount;
 
     public Gum[] Gums => _gums;
+    public int MaxSpawnCount => _maxSpawnCount;
+    public int HitGumSpawnRate => _hitGumSpawnRate;
 
     public void Init()
     {
@@ -43,11 +45,11 @@ public class GumSpawner : MonoBehaviour
             var pos = transform.position + new Vector3(Mathf.Cos(theta), 0, Mathf.Sin(theta)) * radius;
             var rot = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             //当たりガムを生成するかどうか
-            var rand = Random.Range(0, 1f);
+            var rand = Random.Range(0, 10);
             //付与する番号
             var id = _gumIDQueue.Dequeue();
             Gum gum;
-            if (rand <= _hitGumSpawnRate)
+            if (rand < _hitGumSpawnRate)
             {
                 if (_hitGumPool.Count > 0)
                 {

@@ -61,5 +61,9 @@ public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
                 }
             }
         }
+        else
+        {
+            PlayerActionManager.Instance.SearchGum(preTarget: _target);
+        }
     }
 }

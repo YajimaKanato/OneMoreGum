@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDefault
   _defaultMoney: 100
   _defaultHitCount: 0
+  _defaultTotalHitCount: 0
   _defaultMissCount: 0
   _perspectiveCost: 1
+  _certainHitCost: 1
+  _revealHitGumCost: 1
+  _revealGumCount: 3

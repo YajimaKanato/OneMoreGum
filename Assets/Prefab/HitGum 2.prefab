@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8439039736619252233}
   - component: {fileID: 5670439022554337268}
   m_Layer: 0
-  m_Name: MissGum
+  m_Name: HitGum 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7476909937904262128}
+  - {fileID: 7689783177550345609}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &995517243972545133
@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 726198050dbc40948a274588238448b9, type: 2}
+  - {fileID: 2100000, guid: 1592167d78256884fbc159c89e97c89e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -153,9 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33ea99180a9adf41b3bbb8190898cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gum
-  _gumDefault: {fileID: 11400000, guid: b6c363c1ebb5de24ba5f00dec0e736e2, type: 2}
-  _light: {fileID: 3019475696648529354}
---- !u!1001 &5011301166928683367
+  _gumDefault: {fileID: 11400000, guid: 2e5c0ccbab533264d856377083a4cfb9, type: 2}
+  _light: {fileID: 2635623733709999027}
+--- !u!1001 &5260062714981404446
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -212,13 +212,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc44f7a8c8db30b4693c4bcad5e4807e, type: 3}
---- !u!108 &3019475696648529354 stripped
+--- !u!108 &2635623733709999027 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 7812869016143381677, guid: fc44f7a8c8db30b4693c4bcad5e4807e, type: 3}
-  m_PrefabInstance: {fileID: 5011301166928683367}
+  m_PrefabInstance: {fileID: 5260062714981404446}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7476909937904262128 stripped
+--- !u!4 &7689783177550345609 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2470477443796302487, guid: fc44f7a8c8db30b4693c4bcad5e4807e, type: 3}
-  m_PrefabInstance: {fileID: 5011301166928683367}
+  m_PrefabInstance: {fileID: 5260062714981404446}
   m_PrefabAsset: {fileID: 0}

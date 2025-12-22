@@ -8,6 +8,6 @@ public class GumInfo : MonoBehaviour
 
     public void InfoUpdate(int rate)
     {
-        _text.text = "当たりの確率\n" + rate.ToString("00") + " %";
+        _text.text = "10個中\n" + rate.ToString("") + "個\n当たる";
     }
 }

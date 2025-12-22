@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerActionManager : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class PlayerActionManager : MonoBehaviour
     [SerializeField] PlayerController _playerController;
     [SerializeField] PlayerStatusUI _playerStatusUI;
     [SerializeField] Perspective _perspective;
-    [SerializeField] GumSpawner _gumSpawner;
+    [SerializeField] GumSpawner[] _gumSpawner;
     [SerializeField] SearchUI _searchUI;
     [SerializeField] Transform _boxTrans;
     PlayerSkill _skill;
@@ -25,7 +26,10 @@ public class PlayerActionManager : MonoBehaviour
             _playerController.Init();
 
             //Spawner
-            _gumSpawner.Init();
+            foreach (var p in _gumSpawner)
+            {
+                p.Init();
+            }
             ResetGums();
             GumSpawn();
         }
@@ -46,7 +50,7 @@ public class PlayerActionManager : MonoBehaviour
         if (target)
         {
             target.Observing();
-            _searchUI.DrawLine(target.transform.position, _boxTrans.position);
+            _searchUI.DrawLine(target, _boxTrans.position);
         }
     }
 
@@ -54,7 +58,7 @@ public class PlayerActionManager : MonoBehaviour
     {
         if (_skill.PurchaseGum(gum.GumDefault.GumValue))
         {
-            if (gum.OpenLotto() == GumDefault.Lotto.Hit)
+            if (gum.OpenLotto(_skill.IsCertainHit) == GumDefault.Lotto.Hit)
             {
                 _skill.GetHitGum();
             }
@@ -62,6 +66,7 @@ public class PlayerActionManager : MonoBehaviour
             {
                 _skill.GetMissGum();
             }
+            _skill.CertainHitModeDeactivation();
             StatusUpdate();
             Debug.Log("Purchase Success");
         }
@@ -74,15 +79,21 @@ public class PlayerActionManager : MonoBehaviour
         Debug.Log($"HitCount => {_skill.HitCount}");
     }
 
-    #region Button
+    #region Skill
     public void ResetGums()
     {
-        _gumSpawner.ResetGums();
+        foreach (var p in _gumSpawner)
+        {
+            p.ResetGums();
+        }
     }
 
     public void GumSpawn()
     {
-        _gumSpawner.GumSpawn();
+        foreach (var p in _gumSpawner)
+        {
+            p.GumSpawn();
+        }
     }
 
     public void Perspective()
@@ -94,15 +105,54 @@ public class PlayerActionManager : MonoBehaviour
         else
         {
             var hitCount = 0;
-            foreach (var gum in _gumSpawner.Gums)
+            foreach (var p in _gumSpawner)
             {
-                if (gum)
+                foreach (var gum in p.Gums)
                 {
-                    if (gum.GumDefault.LottoType == GumDefault.Lotto.Hit) hitCount++;
+                    if (gum)
+                    {
+                        if (gum.GumDefault.LottoType == GumDefault.Lotto.Hit) hitCount++;
+                    }
                 }
             }
             _perspective.PerspectiveActivation(hitCount);
             StatusUpdate();
+            Debug.Log("Perspective");
+        }
+    }
+
+    public void CertainHitMode()
+    {
+        if (_skill.CertainHitModeActivation())
+        {
+            StatusUpdate();
+            Debug.Log("CertainHitMode");
+        }
+    }
+
+    public void RevealHitGum()
+    {
+        if (_skill.RevealHitGum())
+        {
+            var hitGumList = new List<Gum>();
+            foreach (var spawner in _gumSpawner)
+            {
+                foreach (var gum in spawner.Gums)
+                {
+                    if (gum && gum.GumDefault.LottoType == GumDefault.Lotto.Hit) hitGumList.Add(gum);
+                }
+            }
+
+            var revealIndex = 0;
+            for (int i = 0; i < _skill.RevealGumCount; i++)
+            {
+                revealIndex += Random.Range(0, hitGumList.Count);
+                revealIndex %= hitGumList.Count;
+                hitGumList[revealIndex].Reveal();
+                hitGumList.RemoveAt(revealIndex);
+            }
+            StatusUpdate();
+            Debug.Log("RevealHitGum");
         }
     }
     #endregion
