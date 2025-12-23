@@ -81,8 +81,12 @@ public class PlayerActionManager : MonoBehaviour
 
     public void GumSpawn()
     {
-        _gumSpawnerManager.GumSpawn();
-        if (_skill.IsHighRate) _skill.HighRateModeDeactivaion();
+        if (!_gumSpawnerManager.GumSpawn()) return;
+        if (_skill.IsHighRate)
+        {
+            _skill.HighRateModeDeactivaion();
+            Debug.Log("HighRateMode Deactivation");
+        }
     }
 
     public void Perspective()
@@ -136,6 +140,7 @@ public class PlayerActionManager : MonoBehaviour
         {
             _gumSpawnerManager.HighRateMode();
             StatusUpdate();
+            Debug.Log("HighRateMode Activation");
         }
     }
 
@@ -143,8 +148,8 @@ public class PlayerActionManager : MonoBehaviour
     {
         if (_skill.NRHRModeActivation())
         {
-
             StatusUpdate();
+            Debug.Log("NRHRMode Activation");
         }
     }
     #endregion

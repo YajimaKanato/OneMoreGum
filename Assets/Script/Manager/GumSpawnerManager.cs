@@ -35,13 +35,15 @@ public class GumSpawnerManager : MonoBehaviour
         }
     }
 
-    public void GumSpawn()
+    public bool GumSpawn()
     {
+        var spawned = false;
         foreach (var p in _gumSpawner)
         {
-            p.GumSpawn();
+            spawned |= p.GumSpawn();
             p.Runtime.HighRateSpawned();
         }
+        return spawned;
     }
 
     public int Perspective()
@@ -77,6 +79,5 @@ public class GumSpawnerManager : MonoBehaviour
         {
             high = spawner.HighRateActivation();
         }
-        if (high) Debug.Log("HighRateMode");
     }
 }

@@ -47,8 +47,9 @@ public class GumSpawner : MonoBehaviour
         }
     }
 
-    public void GumSpawn()
+    public bool GumSpawn()
     {
+        if (_spawnCount >= _maxSpawnCount) return false;
         while (_spawnCount < _maxSpawnCount)
         {
             //生成位置を決めるためのパラメータ
@@ -94,6 +95,7 @@ public class GumSpawner : MonoBehaviour
             _gums[id] = gum;
             _spawnCount++;
         }
+        return true;
     }
 
     public void ReleaseToPool(Gum gum, int id)
