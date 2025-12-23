@@ -6,13 +6,14 @@ public class Gum : MonoBehaviour
     [SerializeField] GumDefault _gumDefault;
     [SerializeField] Light _light;
     GumSpawner _spawner;
+    int _hitGumRate;
     int _id;
+    public int HitGumRate => _hitGumRate;
     public int ID => _id;
 
     public GumDefault GumDefault => _gumDefault;
-    public GumSpawner Spawner => _spawner;
 
-    public void SpawnSetting(GumSpawner spawner, int id)
+    public void SpawnSetting(GumSpawner spawner, int id, int rate)
     {
         if (tag != "Gum")
         {
@@ -20,6 +21,7 @@ public class Gum : MonoBehaviour
         }
         _spawner = spawner;
         _id = id;
+        _hitGumRate = rate;
         _light.gameObject.SetActive(false);
     }
 

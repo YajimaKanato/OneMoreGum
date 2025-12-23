@@ -7,10 +7,10 @@ public class PlayerActionManager : MonoBehaviour
     [SerializeField] PlayerController _playerController;
     [SerializeField] PlayerStatusUI _playerStatusUI;
     [SerializeField] Perspective _perspective;
-    [SerializeField] GumSpawner[] _gumSpawner;
     [SerializeField] SearchUI _searchUI;
     [SerializeField] Transform _boxTrans;
     PlayerSkill _skill;
+    GumSpawnerManager _gumSpawnerManager;
     static PlayerActionManager _instance;
     public static PlayerActionManager Instance => _instance;
 
@@ -24,15 +24,9 @@ public class PlayerActionManager : MonoBehaviour
             //Player
             _skill = new PlayerSkill(_player);
             _playerController.Init();
-
-            //Spawner
-            foreach (var p in _gumSpawner)
-            {
-                p.Init();
-            }
-            ResetGums();
-            GumSpawn();
         }
+
+        _gumSpawnerManager = GumSpawnerManager.Instance;
     }
 
     public void StatusUpdate()
@@ -82,18 +76,13 @@ public class PlayerActionManager : MonoBehaviour
     #region Skill
     public void ResetGums()
     {
-        foreach (var p in _gumSpawner)
-        {
-            p.ResetGums();
-        }
+        _gumSpawnerManager.ResetGums();
     }
 
     public void GumSpawn()
     {
-        foreach (var p in _gumSpawner)
-        {
-            p.GumSpawn();
-        }
+        _gumSpawnerManager.GumSpawn();
+        if (_skill.IsHighRate) _skill.HighRateModeDeactivaion();
     }
 
     public void Perspective()
@@ -104,18 +93,7 @@ public class PlayerActionManager : MonoBehaviour
         }
         else
         {
-            var hitCount = 0;
-            foreach (var p in _gumSpawner)
-            {
-                foreach (var gum in p.Gums)
-                {
-                    if (gum)
-                    {
-                        if (gum.GumDefault.LottoType == GumDefault.Lotto.Hit) hitCount++;
-                    }
-                }
-            }
-            _perspective.PerspectiveActivation(hitCount);
+            _perspective.PerspectiveActivation(_gumSpawnerManager.Perspective());
             StatusUpdate();
             Debug.Log("Perspective");
         }
@@ -134,25 +112,39 @@ public class PlayerActionManager : MonoBehaviour
     {
         if (_skill.RevealHitGum())
         {
-            var hitGumList = new List<Gum>();
-            foreach (var spawner in _gumSpawner)
-            {
-                foreach (var gum in spawner.Gums)
-                {
-                    if (gum && gum.GumDefault.LottoType == GumDefault.Lotto.Hit) hitGumList.Add(gum);
-                }
-            }
-
+            var hitGumList = _gumSpawnerManager.RevealHitGum();
             var revealIndex = 0;
-            for (int i = 0; i < _skill.RevealGumCount; i++)
+            if (hitGumList.Count > 0)
             {
-                revealIndex += Random.Range(0, hitGumList.Count);
-                revealIndex %= hitGumList.Count;
-                hitGumList[revealIndex].Reveal();
-                hitGumList.RemoveAt(revealIndex);
+                for (int i = 0; i < _skill.RevealGumCount; i++)
+                {
+                    revealIndex += Random.Range(0, hitGumList.Count);
+                    revealIndex %= hitGumList.Count;
+                    hitGumList[revealIndex].Reveal();
+                    hitGumList.RemoveAt(revealIndex);
+                    if (hitGumList.Count == 0) break;
+                }
             }
             StatusUpdate();
             Debug.Log("RevealHitGum");
+        }
+    }
+
+    public void HighRateMode()
+    {
+        if (_skill.HighRateModeActivation())
+        {
+            _gumSpawnerManager.HighRateMode();
+            StatusUpdate();
+        }
+    }
+
+    public void NRHRMode()
+    {
+        if (_skill.NRHRModeActivation())
+        {
+
+            StatusUpdate();
         }
     }
     #endregion

@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
                         {
                             PlayerActionManager.Instance.SearchGum(_target);
                         }
-                        if (Input.GetMouseButtonDown(0))
+                        if (Input.GetMouseButtonUp(0))
                         {
                             PlayerActionManager.Instance.PurchaseGum(_target);
                         }

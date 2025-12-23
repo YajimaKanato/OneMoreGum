@@ -12,11 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c5d573a606eae4893b642de6bc3b96, type: 3}
   m_Name: PlayerDefault
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDefault
-  _defaultMoney: 100
+  _skill: {fileID: 11400000, guid: f7b526270b68e72469e1902866992c4c, type: 2}
+  _defaultMoney: 1000
   _defaultHitCount: 0
   _defaultTotalHitCount: 0
   _defaultMissCount: 0
-  _perspectiveCost: 1
-  _certainHitCost: 1
-  _revealHitGumCost: 1
-  _revealGumCount: 3

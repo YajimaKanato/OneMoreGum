@@ -3,13 +3,18 @@ using UnityEngine;
 
 public class GumSpawner : MonoBehaviour
 {
-    [SerializeField] Gum _hitGum;
-    [SerializeField] Gum _missGum;
-    [SerializeField] float _radius = 1;
-    [SerializeField] int _maxSpawnCount = 10;
-    [SerializeField, Range(1, 10)] int _hitGumSpawnRate;
+    [SerializeField] SpawnerDefault _spawn;
+    SpawnerRuntime _runtime;
+    Gum _hitGum;
+    Gum _missGum;
+    float _radius;
+    int _maxSpawnCount;
+    public SpawnerDefault Spawn => _spawn;
+    public SpawnerRuntime Runtime => _runtime;
     /// <summary>現在スポーン中のオブジェクトの配列</summary>
     Gum[] _gums;
+    /// <summary>現在スポーン中のオブジェクトの中で当たりのものの配列</summary>
+    Gum[] _hitGums;
     /// <summary>スポーンするオブジェクトに付与する番号のキュー</summary>
     Queue<int> _gumIDQueue;
     /// <summary>当たりガムのプール</summary>
@@ -18,13 +23,20 @@ public class GumSpawner : MonoBehaviour
     Queue<Gum> _missGumPool;
     int _spawnCount;
 
-    public Gum[] Gums => _gums;
+    public Gum[] HitGums => _hitGums;
     public int MaxSpawnCount => _maxSpawnCount;
-    public int HitGumSpawnRate => _hitGumSpawnRate;
 
     public void Init()
     {
+        //初期値
+        _hitGum = _spawn.HitGum;
+        _missGum = _spawn.MissGum;
+        _radius = _spawn.Radius;
+        _maxSpawnCount = _spawn.MaxSpawnCount;
+        //new()
+        _runtime = new SpawnerRuntime(_spawn);
         _gums = new Gum[_maxSpawnCount];
+        _hitGums = new Gum[_maxSpawnCount];
         _gumIDQueue = new Queue<int>();
         _hitGumPool = new Queue<Gum>();
         _missGumPool = new Queue<Gum>();
@@ -49,7 +61,7 @@ public class GumSpawner : MonoBehaviour
             //付与する番号
             var id = _gumIDQueue.Dequeue();
             Gum gum;
-            if (rand < _hitGumSpawnRate)
+            if (rand < _runtime.HitGumSpawnRate)
             {
                 if (_hitGumPool.Count > 0)
                 {
@@ -62,6 +74,7 @@ public class GumSpawner : MonoBehaviour
                 {
                     gum = Instantiate(_hitGum, pos, Quaternion.Euler(rot));
                 }
+                _hitGums[id] = gum;
             }
             else
             {
@@ -77,7 +90,7 @@ public class GumSpawner : MonoBehaviour
                     gum = Instantiate(_missGum, pos, Quaternion.Euler(rot));
                 }
             }
-            gum.SpawnSetting(this, id);
+            gum.SpawnSetting(this, id, _runtime.HitGumSpawnRate);
             _gums[id] = gum;
             _spawnCount++;
         }
@@ -85,6 +98,7 @@ public class GumSpawner : MonoBehaviour
 
     public void ReleaseToPool(Gum gum, int id)
     {
+        _hitGums[id] = null;
         _gums[id] = null;
         _gumIDQueue.Enqueue(id);
         gum.gameObject.SetActive(false);
