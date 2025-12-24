@@ -129,7 +129,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2824992832254099451, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: m_Name
-      value: Button
+      value: Title
       objectReference: {fileID: 0}
     - target: {fileID: 6362301569024813820, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -138,14 +138,14 @@ PrefabInstance:
     - target: {fileID: 6362301569024813820, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 949777063}
+      objectReference: {fileID: 949777065}
     - target: {fileID: 6362301569024813820, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SceneChange
       objectReference: {fileID: 0}
     - target: {fileID: 6362301569024813820, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: OutgameManager, Assembly-CSharp
+      value: ResultManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6362301569024813820, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -346,7 +346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 949777064}
-  - component: {fileID: 949777063}
+  - component: {fileID: 949777065}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -354,18 +354,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &949777063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 949777062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a93bdd8991b7894fb71befddd82ddab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OutgameManager
 --- !u!4 &949777064
 Transform:
   m_ObjectHideFlags: 0
@@ -375,12 +363,24 @@ Transform:
   m_GameObject: {fileID: 949777062}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1621.2222, y: 0, z: 2176.789}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &949777065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949777062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded27c966a1858545b385e6f5dbf2b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResultManager
 --- !u!1 &1147820003
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,7 +470,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2824992832254099451, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: m_Name
-      value: Button (1)
+      value: Retry
       objectReference: {fileID: 0}
     - target: {fileID: 6362301569024813820, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -479,14 +479,14 @@ PrefabInstance:
     - target: {fileID: 6362301569024813820, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 949777063}
+      objectReference: {fileID: 949777065}
     - target: {fileID: 6362301569024813820, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SceneChange
       objectReference: {fileID: 0}
     - target: {fileID: 6362301569024813820, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: OutgameManager, Assembly-CSharp
+      value: ResultManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6362301569024813820, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument

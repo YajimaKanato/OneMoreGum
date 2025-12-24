@@ -23,7 +23,7 @@ public class PlayerActionManager : MonoBehaviour
 
             //Player
             _skill = new PlayerSkill(_player);
-            _playerController.Init();
+            _playerController.Init(_skill);
         }
 
         _gumSpawnerManager = GumSpawnerManager.Instance;

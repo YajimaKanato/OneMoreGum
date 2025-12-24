@@ -6,9 +6,11 @@ public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
     Gum _preTarget;
     bool _isPause;
     bool _isGameOver;
+    static PlayerSkill _skill;
 
-    public void Init()
+    public void Init(PlayerSkill skill)
     {
+        _skill = skill;
         GameFlowManager.Instance.RegisterList<IPause>(this);
         GameFlowManager.Instance.RegisterList<IResume>(this);
         GameFlowManager.Instance.RegisterList<IGameOver>(this);
@@ -28,6 +30,11 @@ public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
 
     public void GameOver()
     {
+        var loadData = SaveManager.LoadDataPrefs<HitGumCounter>(HitGumCounter.FileName);
+        if (loadData == null || loadData.HitCount < _skill.TotalHitCount)
+        {
+            SaveManager.SaveDataPrefs(HitGumCounter.FileName, new HitGumCounter(_skill.TotalHitCount));
+        }
         _isGameOver = true;
     }
 

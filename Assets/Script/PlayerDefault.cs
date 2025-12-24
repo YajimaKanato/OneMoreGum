@@ -140,3 +140,15 @@ public class PlayerSkill
         _isNRHRMode = false;
     }
 }
+
+[System.Serializable]
+public class HitGumCounter
+{
+    public static readonly string FileName = "HitGum";
+    public int HitCount;
+
+    public HitGumCounter(int hitCount)
+    {
+        HitCount = hitCount;
+    }
+}
