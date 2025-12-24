@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d698a1f3f7804b3439f5dcf5e71eeede, type: 3}
   m_Name: MenuData
   m_EditorClassIdentifier: Assembly-CSharp::MenuData
-  _bgmVolume: 1
-  _seVolume: 1
+  _bgmVolume: 0.7
+  _seVolume: 0.7
+  _isSkipMode: 0

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameFlowManager : MonoBehaviour
 {
@@ -22,6 +23,13 @@ public class GameFlowManager : MonoBehaviour
         var type = typeof(T);
         if (!_listDict.ContainsKey(type)) _listDict[type] = new ListClass<T>();
         ((ListClass<T>)_listDict[type]).RegisterData(data);
+    }
+
+    public void RemoveData<T>(T data) where T : IGameFlow
+    {
+        var type = typeof(T);
+        if (!_listDict.ContainsKey(type)) return;
+        ((ListClass<T>)_listDict[type]).RemoveData(data);
     }
 
     public void Pause()
@@ -46,6 +54,7 @@ public class GameFlowManager : MonoBehaviour
         {
             item.GameOver();
         }
+        SceneManager.LoadScene("Result");
         Debug.Log("GameOver");
     }
 }
@@ -59,6 +68,12 @@ public class ListClass<T> where T : IGameFlow
     {
         if (_list == null) _list = new List<T>();
         _list.Add(data);
+    }
+
+    public void RemoveData(T data)
+    {
+        if (_list == null) return;
+        _list.Remove(data);
     }
 }
 

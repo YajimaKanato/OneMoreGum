@@ -66,4 +66,11 @@ public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
             PlayerActionManager.Instance.SearchGum(preTarget: _target);
         }
     }
+
+    private void OnDisable()
+    {
+        GameFlowManager.Instance.RemoveData<IPause>(this);
+        GameFlowManager.Instance.RemoveData<IResume>(this);
+        GameFlowManager.Instance.RemoveData<IGameOver>(this);
+    }
 }

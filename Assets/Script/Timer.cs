@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] Text _text;
+    [SerializeField] Image _image;
 
     public void TextUpdate(float delta)
     {
-        _text.text = delta.ToString("00.0");
+        _image.fillAmount = delta;
     }
 }

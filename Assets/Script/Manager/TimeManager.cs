@@ -42,12 +42,12 @@ public class TimeManager : MonoBehaviour, IPause, IResume, IGameOver
             if (!_isPause)
             {
                 _delta -= Time.deltaTime;
-                _timer.TextUpdate(_delta);
                 if (_delta <= 0)
                 {
                     _delta = _spawnInterval;
                     if (GumSpawnerManager.Instance.GumSpawn()) Debug.Log("GumRespawn");
                 }
+                _timer.TextUpdate(_delta / _spawnInterval);
             }
         }
     }

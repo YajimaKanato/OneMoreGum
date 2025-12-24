@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlayerSkill
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillData
   _perspectiveCost: 1
-  _certainHitCost: 1
-  _revealHitGumCost: 1
-  _highRateCost: 1
-  _noRiskHighReturnCost: 5
-  _revealGumCount: 3
+  _certainHitCost: 5
+  _revealHitGumCost: 5
+  _highRateCost: 10
+  _noRiskHighReturnCost: 20
+  _revealGumCount: 5
