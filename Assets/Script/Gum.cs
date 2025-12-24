@@ -10,8 +10,8 @@ public class Gum : MonoBehaviour
     int _id;
     public int HitGumRate => _hitGumRate;
     public int ID => _id;
-
     public GumDefault GumDefault => _gumDefault;
+    public int Score => _gumDefault.GumScore * _spawner.Magnif;
 
     public void SpawnSetting(GumSpawner spawner, int id, int rate)
     {
@@ -25,10 +25,11 @@ public class Gum : MonoBehaviour
         _light.gameObject.SetActive(false);
     }
 
-    public GumDefault.Lotto OpenLotto(bool isCertainHit)
+    public GumDefault.Lotto OpenLotto(bool isCertainHit, out int score)
     {
         _spawner.ReleaseToPool(this, _id);
         Debug.Log(_gumDefault.LottoType.ToString());
+        score = _gumDefault.GumScore * _spawner.Magnif;
         return isCertainHit ? GumDefault.Lotto.Hit : _gumDefault.LottoType;
     }
 

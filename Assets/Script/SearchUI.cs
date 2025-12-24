@@ -74,7 +74,7 @@ public class SearchUI : MonoBehaviour
             yield return wait;
         }
         _gumInfo.gameObject.SetActive(true);
-        _gumInfo.InfoUpdate(gum.HitGumRate);
+        _gumInfo.InfoUpdate(gum.HitGumRate, gum.Score);
         _gumInfo.transform.position = Camera.main.WorldToScreenPoint(currentPos);
     }
 }

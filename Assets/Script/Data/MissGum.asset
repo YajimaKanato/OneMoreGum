@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: MissGum
   m_EditorClassIdentifier: Assembly-CSharp::GumDefault
   _gumValue: 10
+  _gumScore: 50
   _lottoType: 1

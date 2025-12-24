@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33ea99180a9adf41b3bbb8190898cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gum
-  _gumDefault: {fileID: 11400000, guid: 2e5c0ccbab533264d856377083a4cfb9, type: 2}
+  _gumDefault: {fileID: 11400000, guid: 33b5260ed4cb26c4e858ec5e28a3f005, type: 2}
   _light: {fileID: 3255722514897258962}
 --- !u!1001 &4702396386934558079
 PrefabInstance:

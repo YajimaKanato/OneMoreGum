@@ -31,9 +31,9 @@ public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
     public void GameOver()
     {
         var loadData = SaveManager.LoadDataPrefs<HitGumCounter>(HitGumCounter.FileName);
-        if (loadData == null || loadData.HitCount < _skill.TotalHitCount)
+        if (loadData == null || loadData.HitCount < _skill.Score)
         {
-            SaveManager.SaveDataPrefs(HitGumCounter.FileName, new HitGumCounter(_skill.TotalHitCount));
+            SaveManager.SaveDataPrefs(HitGumCounter.FileName, new HitGumCounter(_skill.Score));
         }
         _isGameOver = true;
     }

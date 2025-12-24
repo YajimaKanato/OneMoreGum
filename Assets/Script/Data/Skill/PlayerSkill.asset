@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 570e65fe43047b545b9f25cd85b7abd2, type: 3}
+  m_Name: PlayerSkill
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillData
+  _perspectiveCost: {fileID: 11400000, guid: b58cbee1cac4801408d881a34453dc26, type: 2}
+  _certainHitCost: {fileID: 11400000, guid: 2f257cca7c437684e85cbb43bca28e64, type: 2}
+  _revealHitGumCost: {fileID: 11400000, guid: fb576dc1de4a1494ea7a12312789b573, type: 2}
+  _highRateCost: {fileID: 11400000, guid: f44d21c44c2ddc64fad0d50554df7a79, type: 2}
+  _noRiskHighReturnCost: {fileID: 11400000, guid: 420580d83f4ee3b4fbfaad4e72954daa, type: 2}
+  _pointUpCost: {fileID: 11400000, guid: e7dc20bc30499484e90d0dce779cc942, type: 2}
+  _discountCost: {fileID: 11400000, guid: c300b3416d1feab43a9444df882b863a, type: 2}
+  _revealGumCount: 5
+  _pointDownValue: 10
+  _discountValue: 2

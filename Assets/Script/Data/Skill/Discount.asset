@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ad9b80b9d41e3043ac8f323a47c7629, type: 3}
+  m_Name: Discount
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  _type: 0
+  _cost: 1
+  _info: "\u300C\u300D\n\u6B21\u306B\u4F7F\u3046\u30B9\u30AD\u30EB\u306E\n\u6D88\u8CBB\u30CF\u30BA\u30EC\u30AC\u30E0\u306E\u6570\u3092\n2\u5C11\u306A\u304F\u3059\u308B"

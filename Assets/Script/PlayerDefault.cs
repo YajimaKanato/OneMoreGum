@@ -21,19 +21,24 @@ public class PlayerSkill
     PlayerSkillData _skill;
     int _currentMoney;
     int _hitCount;
-    int _totalHitCount;
+    int _score;
     int _missCount;
     int _revealGumCount;
+    int _rateUpCount;
+    int _discountValue;
     bool _isPurchasable;
     bool _isCertainHit;
     bool _isHighRate;
     bool _isNRHRMode;
+    bool _isRateUPMode;
+    bool _isDiscount;
 
     public int CurrentMoney => _currentMoney;
     public int HitCount => _hitCount;
-    public int TotalHitCount => _totalHitCount;
+    public int Score => _score;
     public int MissCount => _missCount;
     public int RevealGumCount => _revealGumCount;
+    public int RateUpCount => _rateUpCount;
     public bool IsPurchasable => _isPurchasable;
     public bool IsCertainHit => _isCertainHit;
     public bool IsHighRate => _isHighRate;
@@ -44,19 +49,22 @@ public class PlayerSkill
         _skill = data.Skill;
         _currentMoney = _player.DefaultMoney;
         _hitCount = _player.DefaultHitCount;
-        _totalHitCount = _player.DefaultTotalHitCount;
+        _score = _player.DefaultTotalHitCount;
         _missCount = _player.DefaultMissCount;
         _revealGumCount = _skill.RevealGumCount;
+        _rateUpCount = _skill.PointDownValue;
+        _isCertainHit = false;
         _isPurchasable = true;
     }
 
     public bool CertainHitModeActivation()
     {
         if (_isCertainHit) return false;
-        var cost = _skill.CertainHitCost;
+        var cost = _skill.CertainHitCost - _discountValue;
+        if (cost <= 0) cost = 0;
         if (_missCount < cost) return false;
         _isCertainHit = true;
-        _missCount -= _skill.CertainHitCost;
+        _missCount -= cost;
         return true;
     }
 
@@ -67,7 +75,8 @@ public class PlayerSkill
 
     public bool RevealHitGum()
     {
-        var cost = _skill.RevealHitGumCost;
+        var cost = _skill.RevealHitGumCost - _discountValue;
+        if (cost <= 0) cost = 0;
         if (_missCount < cost) return false;
         _missCount -= cost;
         return true;
@@ -76,7 +85,8 @@ public class PlayerSkill
     public bool HighRateModeActivation()
     {
         if (_isHighRate) return false;
-        var cost = _skill.HighRateCost;
+        var cost = _skill.HighRateCost - _discountValue;
+        if (cost <= 0) cost = 0;
         if (_missCount < cost) return false;
         _isHighRate = true;
         _missCount -= cost;
@@ -104,22 +114,25 @@ public class PlayerSkill
         return true;
     }
 
-    public void GetHitGum()
+    public void GetHitGum(int score)
     {
         if (_isNRHRMode) _isNRHRMode = false;
-        _totalHitCount++;
+        if (_isRateUPMode) _rateUpCount--;
+        _score += score;
         _hitCount++;
         _isPurchasable = true;
     }
 
     public void GetMissGum()
     {
+        if (_isRateUPMode) _rateUpCount--;
         _missCount++;
     }
 
     public bool Perspective()
     {
-        var cost = _skill.PerspectiveCost;
+        var cost = _skill.PerspectiveCost - _discountValue;
+        if (cost <= 0) cost = 0;
         if (_missCount < cost) return false;
         _missCount -= cost;
         return true;
@@ -128,7 +141,8 @@ public class PlayerSkill
     public bool NRHRModeActivation()
     {
         if (_isNRHRMode) return false;
-        var cost = _skill.NoRiskHighReturnCost;
+        var cost = _skill.NoRiskHighReturnCost - _discountValue;
+        if (cost <= 0) cost = 0;
         if (_missCount < cost) return false;
         _isNRHRMode = true;
         _missCount -= cost;
@@ -138,6 +152,40 @@ public class PlayerSkill
     public void NRHRModeDeactivation()
     {
         _isNRHRMode = false;
+    }
+
+    public bool PointUPModeActivation()
+    {
+        if (_isRateUPMode) return false;
+        var cost = _skill.PointUpCost - _discountValue;
+        if (cost <= 0) cost = 0;
+        if (_missCount < cost) return false;
+        _isRateUPMode = true;
+        _rateUpCount = _skill.PointDownValue;
+        _missCount -= cost;
+        return true;
+    }
+
+    public void PointUPModeDeactivation()
+    {
+        _isRateUPMode = false;
+    }
+
+    public bool DiscountModeActivation()
+    {
+        if (_isDiscount) return false;
+        var cost = _skill.DiscountCost;
+        if (_hitCount < cost) return false;
+        _isDiscount = true;
+        _hitCount -= cost;
+        _discountValue = _skill.DiscountValue;
+        return true;
+    }
+
+    public void DiscountModeDeactivation()
+    {
+        _isDiscount = false;
+        _discountValue = 0;
     }
 }
 

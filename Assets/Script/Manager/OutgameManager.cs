@@ -21,7 +21,7 @@ public class OutgameManager : GameManager
         var highScore = SaveManager.LoadDataPrefs<HitGumCounter>(HitGumCounter.FileName);
         if (highScore != null)
         {
-            _highScore.text = "ハイスコア\n" + highScore.HitCount.ToString() + " 個";
+            _highScore.text = "ハイスコア\n" + highScore.HitCount.ToString() + " 点";
         }
     }
 }

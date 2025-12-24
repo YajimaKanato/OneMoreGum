@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7d49ddc78da81c48bd5accbab69ba8a, type: 3}
-  m_Name: HitGum
-  m_EditorClassIdentifier: Assembly-CSharp::GumDefault
-  _gumValue: 10
-  _gumScore: 50
-  _lottoType: 0
+  m_Script: {fileID: 11500000, guid: 1ad9b80b9d41e3043ac8f323a47c7629, type: 3}
+  m_Name: PointUP
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  _type: 1
+  _cost: 3
+  _info: "\u300C\u300D\n10\u500B\u307E\u3067\n\u5F97\u70B9\u30922\u500D\u306B\u3059\u308B"

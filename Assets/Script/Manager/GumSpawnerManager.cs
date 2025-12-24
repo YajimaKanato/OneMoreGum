@@ -80,4 +80,20 @@ public class GumSpawnerManager : MonoBehaviour
             high = spawner.HighRateActivation();
         }
     }
+
+    public void PointUPMode()
+    {
+        foreach(var spawner in _gumSpawner)
+        {
+            spawner.MagnifUp();
+        }
+    }
+
+    public void PointUPModeDeactivaion()
+    {
+        foreach(var spawner in _gumSpawner)
+        {
+            spawner.DefaultMagnif();
+        }
+    }
 }

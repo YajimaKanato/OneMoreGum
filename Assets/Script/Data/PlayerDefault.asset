@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerDefault
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDefault
   _skill: {fileID: 11400000, guid: f7b526270b68e72469e1902866992c4c, type: 2}
-  _defaultMoney: 10
+  _defaultMoney: 500
   _defaultHitCount: 0
   _defaultTotalHitCount: 0
   _defaultMissCount: 0

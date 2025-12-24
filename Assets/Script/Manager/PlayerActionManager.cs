@@ -9,6 +9,7 @@ public class PlayerActionManager : MonoBehaviour
     [SerializeField] Perspective _perspective;
     [SerializeField] SearchUI _searchUI;
     [SerializeField] Transform _boxTrans;
+    [SerializeField] SkillUI _skillUI;
     PlayerSkill _skill;
     GumSpawnerManager _gumSpawnerManager;
     static PlayerActionManager _instance;
@@ -52,9 +53,9 @@ public class PlayerActionManager : MonoBehaviour
     {
         if (_skill.PurchaseGum(gum.GumDefault.GumValue))
         {
-            if (gum.OpenLotto(_skill.IsCertainHit) == GumDefault.Lotto.Hit)
+            if (gum.OpenLotto(_skill.IsCertainHit, out var score) == GumDefault.Lotto.Hit)
             {
-                _skill.GetHitGum();
+                _skill.GetHitGum(score);
             }
             else
             {
@@ -69,26 +70,23 @@ public class PlayerActionManager : MonoBehaviour
             Debug.Log("Purchase Failed");
         }
         if (!_skill.IsPurchasable) GameFlowManager.Instance.GameOver();
+        if (_skill.RateUpCount <= 0)
+        {
+            _skill.PointUPModeDeactivation();
+            _gumSpawnerManager.PointUPModeDeactivaion();
+            Debug.Log("PointUPMode Deactivaion");
+        }
         Debug.Log($"Money => {_skill.CurrentMoney}");
         Debug.Log($"HitCount => {_skill.HitCount}");
     }
 
+    void DiscountModeDeactivation()
+    {
+        _skill.DiscountModeDeactivation();
+        _skillUI.DiscountModeDeactivation();
+    }
+
     #region Skill
-    public void ResetGums()
-    {
-        _gumSpawnerManager.ResetGums();
-    }
-
-    public void GumSpawn()
-    {
-        if (!_gumSpawnerManager.GumSpawn()) return;
-        if (_skill.IsHighRate)
-        {
-            _skill.HighRateModeDeactivaion();
-            Debug.Log("HighRateMode Deactivation");
-        }
-    }
-
     public void Perspective()
     {
         if (!_skill.Perspective())
@@ -98,6 +96,7 @@ public class PlayerActionManager : MonoBehaviour
         else
         {
             _perspective.PerspectiveActivation(_gumSpawnerManager.Perspective());
+            DiscountModeDeactivation();
             StatusUpdate();
             Debug.Log("Perspective");
         }
@@ -108,6 +107,7 @@ public class PlayerActionManager : MonoBehaviour
         if (_skill.CertainHitModeActivation())
         {
             StatusUpdate();
+            DiscountModeDeactivation();
             Debug.Log("CertainHitMode");
         }
     }
@@ -129,6 +129,7 @@ public class PlayerActionManager : MonoBehaviour
                     if (hitGumList.Count == 0) break;
                 }
             }
+            DiscountModeDeactivation();
             StatusUpdate();
             Debug.Log("RevealHitGum");
         }
@@ -139,6 +140,7 @@ public class PlayerActionManager : MonoBehaviour
         if (_skill.HighRateModeActivation())
         {
             _gumSpawnerManager.HighRateMode();
+            DiscountModeDeactivation();
             StatusUpdate();
             Debug.Log("HighRateMode Activation");
         }
@@ -148,8 +150,30 @@ public class PlayerActionManager : MonoBehaviour
     {
         if (_skill.NRHRModeActivation())
         {
+            DiscountModeDeactivation();
             StatusUpdate();
             Debug.Log("NRHRMode Activation");
+        }
+    }
+
+    public void PointUPMode()
+    {
+        if (_skill.PointUPModeActivation())
+        {
+            _gumSpawnerManager.PointUPMode();
+            DiscountModeDeactivation();
+            StatusUpdate();
+            Debug.Log("RateUPMode Activation");
+        }
+    }
+
+    public void DiscountMode()
+    {
+        if (_skill.DiscountModeActivation())
+        {
+            _skillUI.DiscountModeActivation();
+            StatusUpdate();
+            Debug.Log("DiscountMode Activation");
         }
     }
     #endregion

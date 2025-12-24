@@ -4,12 +4,14 @@ using UnityEngine;
 public class GumSpawner : MonoBehaviour
 {
     [SerializeField] SpawnerDefault _spawn;
+    [SerializeField] int _magnifUP = 2;
     SpawnerRuntime _runtime;
     Gum _hitGum;
     Gum _missGum;
     float _radius;
     int _maxSpawnCount;
-    public SpawnerDefault Spawn => _spawn;
+    int _magnif = 1;
+    public int Magnif => _magnif;
     public SpawnerRuntime Runtime => _runtime;
     /// <summary>現在スポーン中のオブジェクトの配列</summary>
     Gum[] _gums;
@@ -24,7 +26,6 @@ public class GumSpawner : MonoBehaviour
     int _spawnCount;
 
     public Gum[] HitGums => _hitGums;
-    public int MaxSpawnCount => _maxSpawnCount;
 
     public void Init()
     {
@@ -122,4 +123,15 @@ public class GumSpawner : MonoBehaviour
             if (gum) ReleaseToPool(gum, gum.ID);
         }
     }
+
+    public void MagnifUp()
+    {
+        _magnif = _magnifUP;
+    }
+
+    public void DefaultMagnif()
+    {
+        _magnif = 1;
+    }
+
 }
