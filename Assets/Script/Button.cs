@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Button : MonoBehaviour
 {
@@ -14,5 +15,15 @@ public class Button : MonoBehaviour
     {
         if (!_isOver) return;
         _event.Invoke();
+    }
+
+    public void Click(Image image)
+    {
+        image.color = Color.gray;
+    }
+
+    public void Released(Image image)
+    {
+        image.color = Color.white;
     }
 }

@@ -139,6 +139,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6362301569024813820}
+          m_TargetAssemblyTypeName: Button, Assembly-CSharp
+          m_MethodName: Click
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8809080125771207466}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &6362301569024813820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +177,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6362301569024813820}
+        m_TargetAssemblyTypeName: Button, Assembly-CSharp
+        m_MethodName: Released
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8809080125771207466}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
