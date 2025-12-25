@@ -10,7 +10,6 @@ public class Perspective : MonoBehaviour
 
     public void PerspectiveActivation(int hitCount)
     {
-        _hitCount.text = hitCount.ToString() + "個の当たりガムがありそうだ";
         Debug.Log($"当たりガムの個数 => {hitCount}");
         if (_coroutine != null)
         {
@@ -22,6 +21,7 @@ public class Perspective : MonoBehaviour
 
     IEnumerator PerspectiveCoroutine(int hitCount)
     {
+        _hitCount.text = hitCount.ToString() + "個の当たりガムがありそうだ";
         yield return new WaitForSeconds(_effectiveTime);
         _hitCount.text = "";
     }

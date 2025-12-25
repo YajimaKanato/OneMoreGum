@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   _type: 1
   _cost: 3
-  _info: "\u300C\u300D\n10\u500B\u307E\u3067\n\u5F97\u70B9\u30922\u500D\u306B\u3059\u308B"
+  _info: "\u300C\u52B9\u7387\u300D\n10\u500B\u307E\u3067\n\u5F97\u70B9\u30922\u500D\u306B\u3059\u308B\n"

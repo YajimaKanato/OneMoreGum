@@ -5,11 +5,16 @@ public class SkillInfo : MonoBehaviour
 {
     [SerializeField] PlayerSkillData _player;
     [SerializeField] SkillData _skillData;
-    [SerializeField] Text _text;
+    Text _text;
+
+    private void Start()
+    {
+        _text = GetComponent<Text>();
+    }
 
     public void InfoUpdate(bool discount)
     {
         var cost = _skillData.cost - (discount && _skillData.Type == GumDefault.Lotto.Miss ? _player.DiscountCost : 0);
-        _text.text = _skillData.Info + "\n必要な" + (_skillData.Type == GumDefault.Lotto.Hit ? "当たり" : "ハズレ") + "ガム\n" + cost + " 個";
+        _text.text = _skillData.Info + "\n必要な" + (_skillData.Type == GumDefault.Lotto.Hit ? "<color=red>当たり</color>" : "<color=blue>ハズレ</color>") + "ガム\n" + cost + " 個";
     }
 }

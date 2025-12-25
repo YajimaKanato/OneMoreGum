@@ -177,7 +177,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 8ca7bcd563d3f724eaf3f30cc42d5982, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
     m_BestFit: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 8ca7bcd563d3f724eaf3f30cc42d5982, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
@@ -389,6 +389,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 848556650228374705, guid: d8653f4c6bb91364a9851ad8bda2571c, type: 3}
+      propertyPath: m_Text
+      value: "\u52B9\u679C\u97F3"
+      objectReference: {fileID: 0}
+    - target: {fileID: 848556650228374705, guid: d8653f4c6bb91364a9851ad8bda2571c, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 37d919b4a3fec7f4ab194c2d53e58b2b, type: 3}
+    - target: {fileID: 1404371120939108707, guid: d8653f4c6bb91364a9851ad8bda2571c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -259
+      objectReference: {fileID: 0}
     - target: {fileID: 1972466831457308686, guid: d8653f4c6bb91364a9851ad8bda2571c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -408,6 +420,10 @@ PrefabInstance:
     - target: {fileID: 2241533495004152703, guid: d8653f4c6bb91364a9851ad8bda2571c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731993512529189512, guid: d8653f4c6bb91364a9851ad8bda2571c, type: 3}
+      propertyPath: m_Text
+      value: "\u6F14\u51FA\u30B9\u30AD\u30C3\u30D7"
       objectReference: {fileID: 0}
     - target: {fileID: 3368766182205379591, guid: d8653f4c6bb91364a9851ad8bda2571c, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -469,6 +485,14 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BGMVolumeChange
       objectReference: {fileID: 0}
+    - target: {fileID: 6252214666358629666, guid: d8653f4c6bb91364a9851ad8bda2571c, type: 3}
+      propertyPath: m_Text
+      value: "\u97F3\u697D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252214666358629666, guid: d8653f4c6bb91364a9851ad8bda2571c, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 37d919b4a3fec7f4ab194c2d53e58b2b, type: 3}
     - target: {fileID: 6502500631004822470, guid: d8653f4c6bb91364a9851ad8bda2571c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -536,6 +560,10 @@ PrefabInstance:
     - target: {fileID: 8610175120781472377, guid: d8653f4c6bb91364a9851ad8bda2571c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8707920851731783613, guid: d8653f4c6bb91364a9851ad8bda2571c, type: 3}
+      propertyPath: m_Text
+      value: "\u3082\u3069\u308B"
       objectReference: {fileID: 0}
     - target: {fileID: 9186839555149089108, guid: d8653f4c6bb91364a9851ad8bda2571c, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -743,7 +771,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 37d919b4a3fec7f4ab194c2d53e58b2b, type: 3}
     m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
@@ -839,6 +867,10 @@ PrefabInstance:
     - target: {fileID: 2824992832254099451, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: m_Name
       value: Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008594582360056947, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
+      propertyPath: m_Text
+      value: "\u306F\u3058\u3081\u308B"
       objectReference: {fileID: 0}
     - target: {fileID: 6362301569024813820, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -965,6 +997,10 @@ PrefabInstance:
     - target: {fileID: 2824992832254099451, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: m_Name
       value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008594582360056947, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
+      propertyPath: m_Text
+      value: "\u8A2D\u5B9A"
       objectReference: {fileID: 0}
     - target: {fileID: 6362301569024813820, guid: 556f350ac29ab3e45b83f968316a77d0, type: 3}
       propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1134,7 +1170,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 8ca7bcd563d3f724eaf3f30cc42d5982, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -1213,7 +1249,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 8ca7bcd563d3f724eaf3f30cc42d5982, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
