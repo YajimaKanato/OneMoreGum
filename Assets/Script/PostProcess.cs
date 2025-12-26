@@ -6,6 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class PostProcess : MonoBehaviour, IPause, IResume
 {
+    [SerializeField] GameObject _skillFilter;
     [SerializeField] Volume _volume;
     [SerializeField] UnityEvent[] _events;
     IEnumerator _coroutine;
@@ -33,6 +34,7 @@ public class PostProcess : MonoBehaviour, IPause, IResume
     IEnumerator VignetteCoroutine(int index, Vignette vignette)
     {
         _events[index].Invoke();
+        _skillFilter.SetActive(true);
         var intensity = vignette.intensity.value;
         while (intensity < 0.5)
         {
@@ -47,5 +49,6 @@ public class PostProcess : MonoBehaviour, IPause, IResume
             vignette.intensity.value = intensity;
             yield return null;
         }
+        _skillFilter.SetActive(false);
     }
 }
