@@ -13,7 +13,6 @@ public class MenuManager : MonoBehaviour
     private void Awake()
     {
         _menu.Init(_menuData);
-        if (_filter) Filter();
         MenuClose();
     }
 
