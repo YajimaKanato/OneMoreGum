@@ -4,21 +4,35 @@ using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-public class PostProcess : MonoBehaviour
+public class PostProcess : MonoBehaviour, IPause, IResume
 {
     [SerializeField] Volume _volume;
     [SerializeField] UnityEvent[] _events;
+    IEnumerator _coroutine;
+
+    public void Pause()
+    {
+        StopCoroutine(_coroutine);
+    }
+
+    public void Resume()
+    {
+        StartCoroutine(_coroutine);
+    }
+
     public void Vignette(int index)
     {
         if (_volume.profile.TryGet(out Vignette vignette))
         {
-            StartCoroutine(VignetteCoroutine(index, vignette));
+            _coroutine = VignetteCoroutine(index, vignette);
+            StartCoroutine(_coroutine);
             Debug.Log("Vignette");
         }
     }
 
     IEnumerator VignetteCoroutine(int index, Vignette vignette)
     {
+        _events[index].Invoke();
         var intensity = vignette.intensity.value;
         while (intensity < 0.5)
         {
@@ -26,7 +40,6 @@ public class PostProcess : MonoBehaviour
             vignette.intensity.value = intensity;
             yield return null;
         }
-        _events[index].Invoke();
         yield return new WaitForSeconds(0.5f);
         while (intensity > 0)
         {
