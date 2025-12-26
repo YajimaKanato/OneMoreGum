@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32322f7fcdf220d4a9ec44ba845b2b6d, type: 3}
   m_Name: SpawnerDefault
   m_EditorClassIdentifier: Assembly-CSharp::SpawnerDefault
-  _hitGum: {fileID: 5670439022554337268, guid: 567c0e4cfab2bee41b3d0ce47181b86f, type: 3}
-  _missGum: {fileID: 5670439022554337268, guid: e6f25331478e791459b4f39ad99ac26d, type: 3}
-  _radius: 1
-  _maxSpawnCount: 10
+  _hitGum: {fileID: -6645399721160884074, guid: 0bf6ad065649bf740a1c03b8c624136c, type: 3}
+  _missGum: {fileID: -1801301322778115127, guid: a26fe505c9100c742b260db8441c73d1, type: 3}
+  _radius: 2
+  _maxSpawnCount: 30
   _hitGumSpawnRate: 2
   _hitGumSpawnHighRate: 5
