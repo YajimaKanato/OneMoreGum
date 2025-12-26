@@ -64,7 +64,7 @@ public class PlayerActionManager : MonoBehaviour
                 _skill.GetMissGum();
             }
             _skill.CertainHitModeDeactivation();
-            StatusUpdate();
+            //StatusUpdate();
             Debug.Log("Purchase Success");
         }
         else

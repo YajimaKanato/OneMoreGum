@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
                         {
                             PlayerActionManager.Instance.PurchaseGum(_target);
                             _events[_target.GumID].Invoke();
+                            _events[_target.GumDefault.LottoType == GumDefault.Lotto.Hit ? 3 : 4].Invoke();
                         }
                     }
                 }
