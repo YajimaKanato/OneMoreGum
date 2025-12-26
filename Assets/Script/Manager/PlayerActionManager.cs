@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class PlayerActionManager : MonoBehaviour
 {
+    [SerializeField] UnityEvent[] _events;
     [SerializeField] PlayerDefault _player;
     [SerializeField] PlayerController _playerController;
     [SerializeField] PlayerStatusUI _playerStatusUI;
@@ -87,7 +89,7 @@ public class PlayerActionManager : MonoBehaviour
     }
 
     #region Skill
-    public void Perspective()
+    public void Perspective(int index)
     {
         if (!_skill.Perspective())
         {
@@ -95,6 +97,7 @@ public class PlayerActionManager : MonoBehaviour
         }
         else
         {
+            _events[index].Invoke();
             _perspective.PerspectiveActivation(_gumSpawnerManager.Perspective());
             DiscountModeDeactivation();
             StatusUpdate();
@@ -102,17 +105,18 @@ public class PlayerActionManager : MonoBehaviour
         }
     }
 
-    public void CertainHitMode()
+    public void CertainHitMode(int index)
     {
         if (_skill.CertainHitModeActivation())
         {
+            _events[index].Invoke();
             StatusUpdate();
             DiscountModeDeactivation();
             Debug.Log("CertainHitMode");
         }
     }
 
-    public void RevealHitGum()
+    public void RevealHitGum(int index)
     {
         if (_skill.RevealHitGum())
         {
@@ -129,16 +133,18 @@ public class PlayerActionManager : MonoBehaviour
                     if (hitGumList.Count == 0) break;
                 }
             }
+            _events[index].Invoke();
             DiscountModeDeactivation();
             StatusUpdate();
             Debug.Log("RevealHitGum");
         }
     }
 
-    public void HighRateMode()
+    public void HighRateMode(int index)
     {
         if (_skill.HighRateModeActivation())
         {
+            _events[index].Invoke();
             _gumSpawnerManager.HighRateMode();
             DiscountModeDeactivation();
             StatusUpdate();
@@ -146,20 +152,22 @@ public class PlayerActionManager : MonoBehaviour
         }
     }
 
-    public void NRHRMode()
+    public void NRHRMode(int index)
     {
         if (_skill.NRHRModeActivation())
         {
+            _events[index].Invoke();
             DiscountModeDeactivation();
             StatusUpdate();
             Debug.Log("NRHRMode Activation");
         }
     }
 
-    public void PointUPMode()
+    public void PointUPMode(int index)
     {
         if (_skill.PointUPModeActivation())
         {
+            _events[index].Invoke();
             _gumSpawnerManager.PointUPMode();
             DiscountModeDeactivation();
             StatusUpdate();
@@ -167,10 +175,11 @@ public class PlayerActionManager : MonoBehaviour
         }
     }
 
-    public void DiscountMode()
+    public void DiscountMode(int index)
     {
         if (_skill.DiscountModeActivation())
         {
+            _events[index].Invoke();
             _skillUI.DiscountModeActivation();
             StatusUpdate();
             Debug.Log("DiscountMode Activation");
