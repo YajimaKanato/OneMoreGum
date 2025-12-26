@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
 {
+    [SerializeField] UnityEvent[] _events;
     Gum _target;
     Gum _preTarget;
     bool _isPause;
@@ -63,6 +65,7 @@ public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
                         if (Input.GetMouseButtonUp(0))
                         {
                             PlayerActionManager.Instance.PurchaseGum(_target);
+                            _events[_target.GumID].Invoke();
                         }
                     }
                 }

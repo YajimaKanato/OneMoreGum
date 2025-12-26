@@ -3,11 +3,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Gum : MonoBehaviour
 {
+    [SerializeField] int gumID;
     [SerializeField] GumDefault _gumDefault;
     [SerializeField] Light _light;
     GumSpawner _spawner;
     int _hitGumRate;
     int _id;
+    public int GumID => gumID;
     public int HitGumRate => _hitGumRate;
     public int ID => _id;
     public GumDefault GumDefault => _gumDefault;

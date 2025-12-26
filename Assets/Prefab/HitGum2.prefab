@@ -432,6 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33ea99180a9adf41b3bbb8190898cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gum
+  gumID: 1
   _gumDefault: {fileID: 11400000, guid: 33b5260ed4cb26c4e858ec5e28a3f005, type: 2}
   _light: {fileID: 7812869016143381677, guid: fc44f7a8c8db30b4693c4bcad5e4807e, type: 3}
 --- !u!65 &1611287952596538248

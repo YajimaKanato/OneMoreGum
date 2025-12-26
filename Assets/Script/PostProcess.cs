@@ -35,6 +35,7 @@ public class PostProcess : MonoBehaviour, IPause, IResume
     {
         _events[index].Invoke();
         _skillFilter.SetActive(true);
+        vignette.center.value = new Vector2(0.88f, 0.85f);
         var intensity = vignette.intensity.value;
         while (intensity < 0.5)
         {
