@@ -7,7 +7,7 @@ public class SkillInfo : MonoBehaviour
     [SerializeField] SkillData _skillData;
     Text _text;
 
-    private void Start()
+    private void Awake()
     {
         _text = GetComponent<Text>();
     }

@@ -6,6 +6,7 @@ public abstract class GameManager : MonoBehaviour
 {
     public void SceneChange(string sceneName)
     {
+        Debug.Log("SceneChange called: " + sceneName);
         SceneManager.LoadScene(sceneName);
     }
 }

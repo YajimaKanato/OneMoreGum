@@ -7,23 +7,37 @@ public class GumSpawnerManager : MonoBehaviour
     SpawnerRuntime[] _spawnerRuntime;
     static GumSpawnerManager _instance;
     public static GumSpawnerManager Instance => _instance;
-    public void Init()
+    public void Start()
     {
         if (_instance == null)
         {
+            Debug.Log("GumSpawnerManager");
             _instance = this;
 
             //Spawner
             var spawnerCount = _gumSpawner.Length;
+            if(_gumSpawner == null || spawnerCount == 0)
+            {
+                //Debug.LogError("GumSpawner not found");
+                return;
+            }
             _spawnerRuntime = new SpawnerRuntime[spawnerCount];
             for (int i = 0; i < spawnerCount; i++)
             {
-                _gumSpawner[i].Init();
+                _gumSpawner[i]?.Init();
                 _spawnerRuntime[i] = _gumSpawner[i].Runtime;
             }
 
             ResetGums();
             GumSpawn();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if(_instance == this)
+        {
+            _instance = null;
         }
     }
 

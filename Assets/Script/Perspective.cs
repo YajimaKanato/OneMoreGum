@@ -1,28 +1,23 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Perspective : MonoBehaviour
 {
+    [SerializeField] UnityEvent _start;
+    [SerializeField] UnityEvent _end;
     [SerializeField] Text _hitCount;
-    [SerializeField] float _effectiveTime = 1f;
-    Coroutine _coroutine;
 
     public void PerspectiveActivation(int hitCount)
     {
         Debug.Log($"当たりガムの個数 => {hitCount}");
-        if (_coroutine != null)
-        {
-            StopCoroutine(_coroutine);
-            _coroutine = null;
-        }
-        _coroutine = StartCoroutine(PerspectiveCoroutine(hitCount));
+        _hitCount.text = hitCount.ToString() + "個の当たりガムがありそうだ";
+        _start.Invoke();
     }
 
-    IEnumerator PerspectiveCoroutine(int hitCount)
+    public void StopPerspective()
     {
-        _hitCount.text = hitCount.ToString() + "個の当たりガムがありそうだ";
-        yield return new WaitForSeconds(_effectiveTime);
-        _hitCount.text = "";
+        _end.Invoke();
     }
 }

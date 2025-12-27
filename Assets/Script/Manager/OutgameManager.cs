@@ -3,16 +3,21 @@ using UnityEngine.UI;
 
 public class OutgameManager : GameManager
 {
+    [SerializeField] Text _current;
     [SerializeField] Text _highScore;
-
+    public static int Current;
     static OutgameManager _instance;
-    private void Awake()
+    public static OutgameManager Instance => _instance;
+    private void Start()
     {
         if (_instance == null)
         {
             _instance = this;
         }
-        HighScore();
+        if (_highScore)
+            HighScore();
+        if (_current)
+            CurrentScore();
     }
 
     void HighScore()
@@ -23,5 +28,10 @@ public class OutgameManager : GameManager
         {
             _highScore.text = "ハイスコア\n" + highScore.HitCount.ToString() + " 点";
         }
+    }
+
+    void CurrentScore()
+    {
+        _current.text = "今回のスコア\n" + Current.ToString() + " 点";
     }
 }

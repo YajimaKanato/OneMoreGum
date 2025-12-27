@@ -88,4 +88,33 @@ public class PostProcess : MonoBehaviour, IPause, IResume
         _skillFilter.SetActive(false);
         _filter.SetActive(false);
     }
+
+    public void GetGumEnd()
+    {
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+            _coroutine = null;
+        }
+
+        if (_volume.profile.TryGet(out Vignette vignette))
+        {
+            _coroutine = GetGumEndCoroutine(vignette);
+            StartCoroutine(_coroutine);
+            Debug.Log("Vignette");
+        }
+    }
+
+    IEnumerator GetGumEndCoroutine(Vignette vignette)
+    {
+        var intensity = vignette.intensity.value;
+        while (intensity > 0)
+        {
+            intensity -= 1 / 300f;
+            vignette.intensity.value = intensity;
+            yield return null;
+        }
+        _skillFilter.SetActive(false);
+        _filter.SetActive(false);
+    }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using unityroom.Api;
 
 public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
 {
@@ -37,6 +38,8 @@ public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
         {
             SaveManager.SaveDataPrefs(HitGumCounter.FileName, new HitGumCounter(_skill.Score));
         }
+        UnityroomApiClient.Instance.SendScore(1, _skill.Score, ScoreboardWriteMode.HighScoreDesc);
+        OutgameManager.Current = _skill.Score;
         _isGameOver = true;
     }
 
@@ -65,8 +68,15 @@ public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
                         if (Input.GetMouseButtonUp(0))
                         {
                             PlayerActionManager.Instance.PurchaseGum(_target);
-                            _events[_target.GumID].Invoke();
-                            _events[_target.GumDefault.LottoType == GumDefault.Lotto.Hit ? 3 : 4].Invoke();
+                            if (!Menu.Runtime.IsSkipMode)
+                            {
+                                _events[_target.GumID + (_target.GumDefault.LottoType == GumDefault.Lotto.Hit ? 3 : 0)].Invoke();
+                                Debug.Log("Effect");
+                            }
+                            else
+                            {
+                                PlayerActionManager.Instance.StatusUpdate();
+                            }
                         }
                     }
                 }
@@ -76,12 +86,5 @@ public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
         {
             PlayerActionManager.Instance.SearchGum(preTarget: _target);
         }
-    }
-
-    private void OnDisable()
-    {
-        GameFlowManager.Instance.RemoveData<IPause>(this);
-        GameFlowManager.Instance.RemoveData<IResume>(this);
-        GameFlowManager.Instance.RemoveData<IGameOver>(this);
     }
 }

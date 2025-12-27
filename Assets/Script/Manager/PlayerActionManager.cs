@@ -1,5 +1,6 @@
-using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerActionManager : MonoBehaviour
@@ -17,8 +18,25 @@ public class PlayerActionManager : MonoBehaviour
     static PlayerActionManager _instance;
     public static PlayerActionManager Instance => _instance;
 
-    public void Init()
+    //public void Start()
+    //{
+    //    if (_instance == null)
+    //    {
+    //        _instance = this;
+    //        StatusUpdate();
+
+    //        //Player
+    //        _skill = new PlayerSkill(_player);
+    //        _playerController.Init(_skill);
+    //    }
+
+    //    _gumSpawnerManager = GumSpawnerManager.Instance;
+    //    Debug.Log("PlayerActionManager" + _gumSpawnerManager);
+    //}
+
+    private IEnumerator Start()
     {
+        yield return null;
         if (_instance == null)
         {
             _instance = this;
@@ -30,7 +48,10 @@ public class PlayerActionManager : MonoBehaviour
         }
 
         _gumSpawnerManager = GumSpawnerManager.Instance;
+        if (_gumSpawnerManager == null)
+            Debug.LogError("GumSpawnerManager not ready");
     }
+
 
     public void StatusUpdate()
     {
@@ -71,7 +92,7 @@ public class PlayerActionManager : MonoBehaviour
         {
             Debug.Log("Purchase Failed");
         }
-        if (!_skill.IsPurchasable) GameFlowManager.Instance.GameOver();
+        
         if (_skill.RateUpCount <= 0)
         {
             _skill.PointUPModeDeactivation();
@@ -80,6 +101,11 @@ public class PlayerActionManager : MonoBehaviour
         }
         Debug.Log($"Money => {_skill.CurrentMoney}");
         Debug.Log($"HitCount => {_skill.HitCount}");
+    }
+
+    public void GameOver()
+    {
+        if (!_skill.IsPurchasable) GameFlowManager.Instance.GameOver();
     }
 
     void DiscountModeDeactivation()

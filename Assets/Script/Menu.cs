@@ -10,6 +10,7 @@ public class Menu : MonoBehaviour
     [SerializeField] Slider _seSlider;
     [SerializeField] SkipMode _skipMode;
     static MenuRuntime _runtime;
+    public static MenuRuntime Runtime => _runtime;
 
     public void Init(MenuData data)
     {

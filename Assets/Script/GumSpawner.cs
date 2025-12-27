@@ -29,6 +29,7 @@ public class GumSpawner : MonoBehaviour
 
     public void Init()
     {
+        Debug.Log("Spawner");
         //初期値
         _hitGum = _spawn.HitGum;
         _missGum = _spawn.MissGum;
@@ -134,4 +135,30 @@ public class GumSpawner : MonoBehaviour
         _magnif = 1;
     }
 
+    private void OnDestroy()
+    {
+        foreach (var gum in _gums)
+        {
+            if (gum)
+            {
+                Destroy(gum.gameObject);
+            }
+        }
+
+        foreach (var gum in _missGumPool)
+        {
+            if (gum)
+            {
+                Destroy(gum.gameObject);
+            }
+        }
+
+        foreach (var gum in _hitGumPool)
+        {
+            if (gum)
+            {
+                Destroy(gum.gameObject);
+            }
+        }
+    }
 }

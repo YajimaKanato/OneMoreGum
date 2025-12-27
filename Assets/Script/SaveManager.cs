@@ -1,4 +1,3 @@
-using System.IO;
 using UnityEngine;
 
 public static class SaveManager
@@ -6,42 +5,44 @@ public static class SaveManager
     const string JSON = ".json";
 
     /// <summary>
-    /// JsonŒ`®‚Åƒf[ƒ^‚ğƒZ[ƒu‚·‚éŠÖ”
+    /// Jsonå½¢å¼ã§ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ã™ã‚‹é–¢æ•°
     /// </summary>
-    /// <typeparam name="T">ƒZ[ƒu‚·‚éƒf[ƒ^‚ÌŒ^</typeparam>
-    /// <param name="fileName">ƒZ[ƒu‚·‚éƒtƒ@ƒCƒ‹‚Ì–¼‘O</param>
-    /// <param name="saveData">ƒZ[ƒu‚·‚éƒf[ƒ^</param>
+    /// <typeparam name="T">ã‚»ãƒ¼ãƒ–ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®å‹</typeparam>
+    /// <param name="fileName">ã‚»ãƒ¼ãƒ–ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰</param>
+    /// <param name="saveData">ã‚»ãƒ¼ãƒ–ã™ã‚‹ãƒ‡ãƒ¼ã‚¿</param>
     public static void SaveDataPrefs<T>(string fileName, T saveData)
     {
-        var filePath = Path.Combine(Application.persistentDataPath, fileName + JSON);
+        //var filePath = Path.Combine(Application.persistentDataPath, fileName + JSON);
         //var filePath = Application.persistentDataPath + $"/{fileName}";
-        //‚±‚ê‚ç‚Í“¯‚¶
+        //ã“ã‚Œã‚‰ã¯åŒã˜
 
-        PlayerPrefs.SetString(filePath, JsonUtility.ToJson(saveData));
+        PlayerPrefs.SetString(fileName + JSON, JsonUtility.ToJson(saveData));
+        PlayerPrefs.Save();
 
-        Debug.Log($"{filePath}‚É•Û‘¶");
+        //Debug.Log($"{filePath}ã«ä¿å­˜");
     }
 
     /// <summary>
-    /// JsonŒ`®‚Åƒf[ƒ^‚ğƒ[ƒh‚·‚éŠÖ”
+    /// Jsonå½¢å¼ã§ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹é–¢æ•°
     /// </summary>
-    /// <typeparam name="T">ƒ[ƒh‚·‚éƒf[ƒ^‚ÌŒ^</typeparam>
-    /// <param name="fileName">ƒ[ƒh‚·‚éƒtƒ@ƒCƒ‹‚Ì–¼‘O</param>
+    /// <typeparam name="T">ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®å‹</typeparam>
+    /// <param name="fileName">ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰</param>
     /// <returns></returns>
     public static T LoadDataPrefs<T>(string fileName)
     {
-        var filePath = Path.Combine(Application.persistentDataPath, fileName + JSON);
+        //var filePath = Path.Combine(Application.persistentDataPath, fileName + JSON);
+        var filePath = fileName + JSON;
 
         if (PlayerPrefs.HasKey(filePath))
         {
             var json = PlayerPrefs.GetString(filePath);
             var loaded = JsonUtility.FromJson<T>(json);
-            Debug.Log("ƒf[ƒ^‚ğƒ[ƒh‚Å‚«‚Ü‚µ‚½");
+            Debug.Log("ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã§ãã¾ã—ãŸ");
             return loaded;
         }
         else
         {
-            Debug.Log("ƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½");
+            Debug.Log("ãƒ•ã‚¡ã‚¤ãƒ«ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ");
             return default;
         }
     }

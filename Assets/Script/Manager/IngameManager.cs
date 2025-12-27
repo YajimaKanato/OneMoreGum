@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class IngameManager : GameManager
@@ -7,11 +8,12 @@ public class IngameManager : GameManager
     [SerializeField] GumSpawnerManager _gum;
     [SerializeField] TimeManager _time;
 
-    private void Awake()
-    {
-        _flow.Init();
-        _gum.Init();
-        _action.Init();
-        _time.Init();
-    }
+    //private IEnumerator Start()
+    //{
+    //    _flow.Init();
+    //    yield return null;
+    //    _gum.Init();
+    //    _action.Init();
+    //    _time.Init();
+    //}
 }
