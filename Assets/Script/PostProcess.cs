@@ -78,10 +78,10 @@ public class PostProcess : MonoBehaviour, IPause, IResume
             vignette.intensity.value = intensity;
             yield return null;
         }
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3.7f);
         while (intensity > 0)
         {
-            intensity -= 1 / 350f;
+            intensity -= 1 / 300f;
             vignette.intensity.value = intensity;
             yield return null;
         }
