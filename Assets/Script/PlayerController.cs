@@ -67,11 +67,12 @@ public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
                         }
                         if (Input.GetMouseButtonUp(0))
                         {
+                            var index = _target.GumID + (_target.GumDefault.LottoType == GumDefault.Lotto.Hit || _skill.IsCertainHit ? 3 : 0);
                             PlayerActionManager.Instance.PurchaseGum(_target);
                             _events[6].Invoke();
                             if (!Menu.Runtime.IsSkipMode)
                             {
-                                _events[_target.GumID + (_target.GumDefault.LottoType == GumDefault.Lotto.Hit ? 3 : 0)].Invoke();
+                                _events[index].Invoke();
                                 Debug.Log("Effect");
                             }
                             else

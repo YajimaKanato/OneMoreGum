@@ -76,6 +76,7 @@ public class PlayerActionManager : MonoBehaviour
     {
         if (_skill.PurchaseGum(gum.GumDefault.GumValue))
         {
+            StatusUpdate();
             if (gum.OpenLotto(_skill.IsCertainHit, out var score) == GumDefault.Lotto.Hit)
             {
                 _skill.GetHitGum(score);
@@ -112,6 +113,11 @@ public class PlayerActionManager : MonoBehaviour
     {
         _skill.DiscountModeDeactivation();
         _skillUI.DiscountModeDeactivation();
+    }
+
+    public void HighRateModeDeactivation()
+    {
+        _skill.HighRateModeDeactivation();
     }
 
     #region Skill

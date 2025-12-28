@@ -6,9 +6,11 @@ public class SkipMode : MonoBehaviour
     [SerializeField] Image _image;
     [SerializeField] Sprite _skip;
     [SerializeField] Sprite _noSkip;
+    [SerializeField] Text _text;
 
     public void SkipModeActivation(bool skip)
     {
         _image.sprite = skip ? _skip : _noSkip;
+        _text.text = skip ? "ON" : "OFF";
     }
 }

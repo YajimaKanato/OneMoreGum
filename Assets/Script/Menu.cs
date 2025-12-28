@@ -22,6 +22,7 @@ public class Menu : MonoBehaviour
         _bgm.volume = _runtime.BGMVolume;
         _seSlider.value = _runtime.SEVolume;
         _se.volume = _runtime.SEVolume;
+        _skipMode.SkipModeActivation(_runtime.IsSkipMode);
     }
 
     public void OpenSetting()

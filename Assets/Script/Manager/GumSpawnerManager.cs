@@ -16,7 +16,7 @@ public class GumSpawnerManager : MonoBehaviour
 
             //Spawner
             var spawnerCount = _gumSpawner.Length;
-            if(_gumSpawner == null || spawnerCount == 0)
+            if (_gumSpawner == null || spawnerCount == 0)
             {
                 //Debug.LogError("GumSpawner not found");
                 return;
@@ -35,7 +35,7 @@ public class GumSpawnerManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(_instance == this)
+        if (_instance == this)
         {
             _instance = null;
         }
@@ -57,6 +57,7 @@ public class GumSpawnerManager : MonoBehaviour
             spawned |= p.GumSpawn();
             p.Runtime.HighRateSpawned();
         }
+        if (spawned && PlayerActionManager.Instance) PlayerActionManager.Instance.HighRateModeDeactivation();
         return spawned;
     }
 
@@ -97,7 +98,7 @@ public class GumSpawnerManager : MonoBehaviour
 
     public void PointUPMode()
     {
-        foreach(var spawner in _gumSpawner)
+        foreach (var spawner in _gumSpawner)
         {
             spawner.MagnifUp();
         }
@@ -105,7 +106,7 @@ public class GumSpawnerManager : MonoBehaviour
 
     public void PointUPModeDeactivaion()
     {
-        foreach(var spawner in _gumSpawner)
+        foreach (var spawner in _gumSpawner)
         {
             spawner.DefaultMagnif();
         }
