@@ -53,6 +53,7 @@ public class PlayerSkill
         _missCount = _player.DefaultMissCount;
         _revealGumCount = _skill.RevealGumCount;
         _rateUpCount = _skill.PointDownValue;
+        _discountValue = _skill.DiscountValue;
         _isCertainHit = false;
         _isPurchasable = true;
     }

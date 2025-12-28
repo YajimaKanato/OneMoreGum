@@ -14,7 +14,8 @@ public class SkillInfo : MonoBehaviour
 
     public void InfoUpdate(bool discount)
     {
-        var cost = _skillData.cost - (discount && _skillData.Type == GumDefault.Lotto.Miss ? _player.DiscountCost : 0);
+        var cost = _skillData.cost - (discount && _skillData.Type == GumDefault.Lotto.Miss ? _player.DiscountValue : 0);
+        if (cost <= 0) cost = 0;
         _text.text = _skillData.Info + "\n必要な" + (_skillData.Type == GumDefault.Lotto.Hit ? "<color=red>当たり</color>" : "<color=blue>ハズレ</color>") + "ガム\n" + cost + " 個";
     }
 }
