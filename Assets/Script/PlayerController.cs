@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour, IPause, IResume, IGameOver
                             else
                             {
                                 PlayerActionManager.Instance.StatusUpdate();
+                                PlayerActionManager.Instance.GameOver();
                             }
                         }
                     }
