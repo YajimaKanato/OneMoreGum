@@ -18,11 +18,11 @@ public class Menu : MonoBehaviour
         {
             _runtime = new MenuRuntime(data);
         }
-        _bgmSlider.value = _runtime.BGMVolume;
+        if (_bgmSlider) _bgmSlider.value = _runtime.BGMVolume;
         _bgm.volume = _runtime.BGMVolume;
-        _seSlider.value = _runtime.SEVolume;
+        if (_seSlider) _seSlider.value = _runtime.SEVolume;
         _se.volume = _runtime.SEVolume;
-        _skipMode.SkipModeActivation(_runtime.IsSkipMode);
+        if (_skipMode) _skipMode.SkipModeActivation(_runtime.IsSkipMode);
     }
 
     public void OpenSetting()

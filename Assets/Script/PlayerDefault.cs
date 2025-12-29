@@ -42,6 +42,7 @@ public class PlayerSkill
     public bool IsPurchasable => _isPurchasable;
     public bool IsCertainHit => _isCertainHit;
     public bool IsHighRate => _isHighRate;
+    public bool IsNRHRMode => _isNRHRMode;
 
     public PlayerSkill(PlayerDefault data)
     {
@@ -148,11 +149,6 @@ public class PlayerSkill
         _isNRHRMode = true;
         _missCount -= cost;
         return true;
-    }
-
-    public void NRHRModeDeactivation()
-    {
-        _isNRHRMode = false;
     }
 
     public bool PointUPModeActivation()

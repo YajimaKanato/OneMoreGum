@@ -81,7 +81,7 @@ public class GumSpawnerManager : MonoBehaviour
         {
             foreach (var gum in spawner.HitGums)
             {
-                if (gum) hitGumList.Add(gum);
+                if (gum && !gum.IsRevealed) hitGumList.Add(gum);
             }
         }
         return hitGumList;

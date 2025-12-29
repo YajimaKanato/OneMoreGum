@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class PlayerActionManager : MonoBehaviour
 {
     [SerializeField] UnityEvent[] _events;
+    [SerializeField] UnityEvent[] _skillActivationEvents;
     [SerializeField] PlayerDefault _player;
     [SerializeField] PlayerController _playerController;
     [SerializeField] PlayerStatusUI _playerStatusUI;
@@ -80,12 +81,14 @@ public class PlayerActionManager : MonoBehaviour
             if (gum.OpenLotto(_skill.IsCertainHit, out var score) == GumDefault.Lotto.Hit)
             {
                 _skill.GetHitGum(score);
+                _skillActivationEvents[4].Invoke();
             }
             else
             {
                 _skill.GetMissGum();
             }
             _skill.CertainHitModeDeactivation();
+            _skillActivationEvents[0].Invoke();
             //StatusUpdate();
             Debug.Log("Purchase Success");
         }
@@ -98,6 +101,7 @@ public class PlayerActionManager : MonoBehaviour
         {
             _skill.PointUPModeDeactivation();
             _gumSpawnerManager.PointUPModeDeactivaion();
+            _skillActivationEvents[1].Invoke();
             Debug.Log("PointUPMode Deactivaion");
         }
         Debug.Log($"Money => {_skill.CurrentMoney}");
@@ -113,11 +117,13 @@ public class PlayerActionManager : MonoBehaviour
     {
         _skill.DiscountModeDeactivation();
         _skillUI.DiscountModeDeactivation();
+        _skillActivationEvents[2].Invoke();
     }
 
     public void HighRateModeDeactivation()
     {
         _skill.HighRateModeDeactivation();
+        _skillActivationEvents[3].Invoke();
     }
 
     #region Skill

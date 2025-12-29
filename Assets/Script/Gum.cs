@@ -9,11 +9,13 @@ public class Gum : MonoBehaviour
     GumSpawner _spawner;
     int _hitGumRate;
     int _id;
+    bool _isReveealed;
     public int GumID => gumID;
     public int HitGumRate => _hitGumRate;
     public int ID => _id;
     public GumDefault GumDefault => _gumDefault;
     public int Score => _gumDefault.GumScore * _spawner.Magnif;
+    public bool IsRevealed => _isReveealed;
 
     public void SpawnSetting(GumSpawner spawner, int id, int rate)
     {
@@ -24,6 +26,7 @@ public class Gum : MonoBehaviour
         _spawner = spawner;
         _id = id;
         _hitGumRate = rate;
+        _isReveealed = false;
         _light.gameObject.SetActive(false);
     }
 
@@ -38,6 +41,7 @@ public class Gum : MonoBehaviour
     public void Reveal()
     {
         _light.gameObject.SetActive(true);
+        _isReveealed = true;
     }
 
     public void Observing()
